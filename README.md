@@ -51,8 +51,8 @@ USACO grades from files named after the problem. A USACO solution redirects
 the standard streams onto those files in its first two lines:
 
 ```cpp
-freopen("rental.in", "r", stdin);
-freopen("rental.out", "w", stdout);
+freopen("file.in", "r", stdin);
+freopen("file.out", "w", stdout);
 ```
 
 CSES, Codeforces, and CodeChef read standard input and write standard output,
