@@ -1,1 +1,8 @@
+# Compiled solutions
 main
+a.out
+*.o
+*.dSYM/
+
+# macOS
+.DS_Store
