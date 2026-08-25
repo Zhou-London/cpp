@@ -15,19 +15,23 @@ sometimes a `sol.md`.
 ## Layout
 
 ```
-bronze/<topic>/<difficulty>/<problem>/    USACO Bronze
-silver/<topic>/<difficulty>/<problem>/    USACO Silver
+bronze/<topic>/[<difficulty>/]<problem>/    USACO Bronze
+silver/<topic>/[<difficulty>/]<problem>/    USACO Silver
 ```
 
 Topics are named after the technique they drill, not after the problems:
-`binary-search`, `prefix-sum`, `two-pointer`, `coor-compress`, `simulation`,
-`greedy`, `complete-search`. Difficulty is `easy`, `normal`, or `hard`. A new
-problem goes under the technique that solves it.
+`binary-search`, `prefix-sum`, `two-pointer`, `sorting`, `simulation`,
+`greedy`, `complete-search`. A new problem goes under the technique that
+solves it.
+
+The `<difficulty>` level is optional. Some topics group their problems into
+`easy`, `normal`, and `hard`; the rest hold the problem directories directly.
+Follow whatever the topic already does.
 
 ## Building and running
 
 ```bash
-cd silver/coor-compress/rental
+cd silver/sorting/rental
 g++ -std=c++17 -O2 main.cpp -o main
 ./main
 ```
@@ -68,7 +72,7 @@ Inside the body, `// !` marks a trap: an intermediate value that overflows
 already sized. Mark the trap where the code handles it. Never explain what the
 line does — the code says that.
 
-Follow [humandoc](https://github.com/Zhou-London/n-skills) for every comment.
+Follow [humandoc](https://github.com/Zhou-London/nskills) for every comment.
 Write the present state, put the fact first, keep one clause per sentence.
 
 ## sol.md
@@ -92,5 +96,5 @@ Chinese; match the language of the file being edited.
 ## Commits
 
 One day of solving per commit. Subject names what was added, imperative, for
-example `silver/coor-compress: add rental and rest-customers`. Compiled
+example `silver/sorting: add mountains and covered-points-count`. Compiled
 binaries and `.DS_Store` stay untracked.
