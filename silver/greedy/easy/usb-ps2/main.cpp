@@ -9,8 +9,8 @@
 #include <string>
 #include <vector>
 int main() {
-//   freopen("file.in", "r", stdin);
-//   freopen("file.out", "w", stdout);
+  //   freopen("file.in", "r", stdin);
+  //   freopen("file.out", "w", stdout);
 
   int a, b, c;
   std::cin >> a >> b >> c;
@@ -40,7 +40,8 @@ int main() {
   long long equipped = 0;
   long long cost = 0;
 
-  int l, r;
+  int l = 0; // ! Init
+  int r = 0;
 
   long long usb_count = std::min<long long>(usb.size(), a);
   equipped += usb_count;
