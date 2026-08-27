@@ -10,8 +10,8 @@
 #include <vector>
 
 int main() {
-  freopen("file.in", "r", stdin);
-  freopen("file.out", "w", stdout);
+  freopen("convention2.in", "r", stdin);
+  freopen("convention2.out", "w", stdout);
 
   struct Cow {
     int a;
@@ -31,7 +31,7 @@ int main() {
   }
 
   std::sort(cows.begin(), cows.end(),
-            [](const Cow &a, const Cow &b) { return a.a < b.a; });
+            [](const Cow &a, const Cow &b) { return a.a + a.t < b.a + b.t; });
 
   auto cmp = [](const Cow &a, const Cow &b) { return a.s > b.s; };
   std::priority_queue<Cow, std::vector<Cow>, decltype(cmp)> pq(cmp);
