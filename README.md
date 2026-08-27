@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 77" src="https://img.shields.io/badge/problems-77-4c1" />
+  <img alt="Problems solved: 85" src="https://img.shields.io/badge/problems-85-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -20,7 +20,7 @@ compiles on its own, runs on its own, and can be read on its own.
 
 ```
 bronze/     USACO Bronze topics: simulation, greedy, complete search, casework, sorting, maps, rectangles, graphs
-silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting
+silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy
 ```
 
 A problem lives in its own directory under a topic. Older topics group the
@@ -119,9 +119,43 @@ These notes are written in Chinese.
 | [`binary-search`](silver/binary-search) | 14 | Binary search on the answer, and on a sorted array |
 | [`prefix-sum`](silver/prefix-sum) | 11 | Range sums in O(1), 1D and 2D, plus difference arrays |
 | [`two-pointer`](silver/two-pointer) | 8 | Slide a window over a sorted array in O(n) |
-| [`sorting`](silver/sorting) | 6 | Sort or compress the coordinates first, then sweep the order |
+| [`sorting`](silver/sorting) | 7 | Sort or compress the coordinates first, then sweep the order |
+| [`greedy`](silver/greedy) | 7 | Take the best choice at each step, after sorting |
 
 ## Releases
+
+### 2026-08-25
+
+Greedy opened as a Silver topic, and `sorting` gained its hardest problem.
+
+- **`silver/greedy` holds seven problems**, all of them sorted first and then
+  swept once. The topic groups them under `easy`.
+- **`silver/greedy/easy/apartments`** — [CSES Apartments](https://cses.fi/problemset/task/1084).
+  Sorts applicants and apartments, then walks both with two pointers. A pair
+  matches when the apartment size falls within `k` of the wish.
+- **`silver/greedy/easy/ferris-wheel`** — [CSES Ferris Wheel](https://cses.fi/problemset/task/1090).
+  Sorts the weights and pairs the lightest child with the heaviest one that
+  still fits. A child who fits beside a heavier partner also fits beside a
+  lighter one, so the left pointer never moves alone.
+- **`silver/greedy/easy/movie-festival`** — [CSES Movie Festival](https://cses.fi/problemset/task/1629).
+  Sorts the movies by end time and takes each movie that starts after the
+  current end. The earliest end leaves the most room for the rest.
+- **`silver/greedy/easy/stick-lengths`** — [CSES Stick Lengths](https://cses.fi/problemset/task/1074).
+  Sorts the sticks and cuts every one of them to the median. The total cost
+  needs `long long`.
+- **`silver/greedy/easy/tasks-deadlines`** — [CSES Tasks and Deadlines](https://cses.fi/problemset/task/1630).
+  Sorts the tasks by duration ascending and runs them in that order. The
+  shortest task first keeps the running clock lowest for everything after it.
+- **`silver/greedy/easy/studying-algor`** — [Codeforces Gym 102951B](https://codeforces.com/gym/102951/problem/B).
+  Sorts the durations ascending and counts how many fit inside the budget.
+- **`silver/greedy/easy/usb-ps2`** — [Codeforces 762B](https://codeforces.com/contest/762/problem/B).
+  Fills the USB-only and PS/2-only ports from the cheapest mice of each kind,
+  then fills the shared ports by merging what is left of the two sorted lists.
+- **`silver/sorting/lifeguards`** — [USACO Lifeguards](https://usaco.org/index.php?page=viewproblem2&cpid=786).
+  Compresses the shift ends onto sorted unique indices and builds a difference
+  array over them. One prefix sum gives the total covered time, a second one
+  gives the time that a single lifeguard covers alone, and the answer drops the
+  lifeguard whose alone-time is smallest.
 
 ### 2026-08-24
 
