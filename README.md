@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 85" src="https://img.shields.io/badge/problems-85-4c1" />
+  <img alt="Problems solved: 92" src="https://img.shields.io/badge/problems-92-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -20,7 +20,7 @@ compiles on its own, runs on its own, and can be read on its own.
 
 ```
 bronze/     USACO Bronze topics: simulation, greedy, complete search, casework, sorting, maps, rectangles, graphs
-silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy
+silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues
 ```
 
 A problem lives in its own directory under a topic. Older topics group the
@@ -86,15 +86,26 @@ The `// *` line links the problem statement. The `// ?` line lists the
 techniques, so a topic directory can be searched by technique rather than by
 problem name.
 
+A third header line carries the judge's difficulty rating, as a bare number:
+
+```cpp
+// ! 1900
+```
+
+The rating places the problem on the scale its own judge publishes. A problem
+whose judge publishes no rating leaves the line out.
+
 Inside the body, `// !` marks the trap that a first attempt falls into — an
 overflow that needs `long long`, a bound that is `< R` rather than `<= R`, a
-container that is already sized. These are the notes worth rereading before a
-contest.
+pointer that starts uninitialized. These are the notes worth rereading before
+a contest.
 
 A problem whose reasoning takes more than a comment carries a `sol.md` beside
 `main.cpp`. The write-up derives the solution: what the problem turns into,
 why the counting has no gaps and no repeats, and where the formula comes from.
-These notes are written in Chinese.
+Some write-ups instead walk one worked example through the whole argument, and
+close with a question to answer before the next attempt. These notes are
+written in Chinese.
 
 ## Topics
 
@@ -120,9 +131,53 @@ These notes are written in Chinese.
 | [`prefix-sum`](silver/prefix-sum) | 11 | Range sums in O(1), 1D and 2D, plus difference arrays |
 | [`two-pointer`](silver/two-pointer) | 8 | Slide a window over a sorted array in O(n) |
 | [`sorting`](silver/sorting) | 7 | Sort or compress the coordinates first, then sweep the order |
-| [`greedy`](silver/greedy) | 7 | Take the best choice at each step, after sorting |
+| [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
+| [`priority-queue`](silver/priority-queue) | 2 | Keep the open intervals in a heap and pop the one that ends first |
 
 ## Releases
+
+### 2026-08-27
+
+Priority queues opened as a Silver topic, and greedy grew a `normal` level for
+the problems that need two strategies instead of one.
+
+- **`silver/priority-queue` holds two problems.** Both sort the intervals by
+  start time and keep the open ones in a heap, so the interval that ends first
+  is always one pop away.
+- **`silver/priority-queue/room-alloc`** — [CSES Room Allocation](https://cses.fi/problemset/task/1164).
+  Sorts the customers by arrival and keeps the occupied rooms in a heap keyed
+  on departure. A customer reuses the room that frees first when it is already
+  free, and opens a new room otherwise. The number of rooms opened is the
+  answer.
+- **`silver/priority-queue/convention-2`** — [USACO Convention II](https://usaco.org/index.php?page=viewproblem2&cpid=859).
+  Keeps the waiting cows in a heap keyed on seniority and serves the most
+  senior one whenever the grass frees up. The `sol.md` rebuilds the driving
+  loop around the moment the grass frees up, rather than the moment a cow
+  arrives, so a cow arriving exactly then still joins the queue.
+- **`silver/greedy/normal/ciel-duel`** — [Codeforces 321B](https://codeforces.com/contest/321/problem/B).
+  Scores two strategies and takes the better one. The first attacks only the
+  ATK cards and sums the damage. The second destroys every card Jiro holds and
+  then sends the leftover cards straight at him, which only pays off when the
+  cards run out exactly.
+- **`silver/greedy/normal/yet-another-tour`** — [Codeforces 1783C](https://codeforces.com/contest/1783/problem/C).
+  Sorts the opponents by cost and beats the cheapest ones the budget allows.
+  The rank is then `n - k` or `n - k + 1`, so the solution tries one swap:
+  drop the most expensive opponent bought and buy opponent `k + 1` instead.
+  The `sol.md` derives the swap from a three-player example.
+- **`silver/greedy/easy/cardgame`** — [USACO Cow Card Game](https://usaco.org/index.php?page=viewproblem2&cpid=573).
+  Splits both hands in half and sorts each half so that Bessie meets Elsie's
+  weak half with her strong cards. Two pointer walks then count the rounds
+  Bessie wins.
+- **`silver/greedy/easy/highcard`** — [USACO High Card Wins](https://usaco.org/index.php?page=viewproblem2&cpid=571).
+  Sorts both hands ascending and walks them with two pointers. Bessie answers
+  each of Elsie's cards with her cheapest card that still beats it.
+- **`silver/greedy/easy/lemonade`** — [USACO Lemonade Line](https://usaco.org/index.php?page=viewproblem2&cpid=835).
+  Sorts the patience values descending and counts how many cows still accept
+  the queue length in front of them.
+- **`silver/greedy/easy/usb-ps2`** initializes both pointers at zero. Reading
+  an uninitialized pointer left the cost undefined on some inputs.
+- **The header may carry a `// !` rating line**, a bare number on the judge's
+  own scale. Six solutions carry one so far.
 
 ### 2026-08-25
 
