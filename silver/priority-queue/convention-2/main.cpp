@@ -1,7 +1,7 @@
 
 
 // * https://usaco.org/index.php?page=viewproblem2&cpid=859
-// ? Priority Queue
+// ? Priority Queue, Sorting
 
 #include <algorithm>
 #include <cstdio>
@@ -30,32 +30,34 @@ int main() {
     cows[i] = {a, t, i};
   }
 
-  std::sort(cows.begin(), cows.end(),
-            [](const Cow &a, const Cow &b) { return a.a + a.t < b.a + b.t; });
+  std::sort(cows.begin(), cows.end(), [](const Cow &a, const Cow &b) {
+    return a.a < b.a;
+  }); // ! Sort by arrivial time
 
   auto cmp = [](const Cow &a, const Cow &b) { return a.s > b.s; };
   std::priority_queue<Cow, std::vector<Cow>, decltype(cmp)> pq(cmp);
 
-  long long end = 0;
+  int i = 0;
+  int end = 0;
   long long ans = 0;
-  for (int i = 0; i < N; ++i) {
-    auto &cow = cows[i];
 
-    while (!pq.empty() && pq.top().a < end) {
-      long long wait = end - pq.top().a;
-      ans = std::max(ans, wait);
-
-      end += pq.top().t;
-      pq.pop();
+  while (i < N || !pq.empty()) {
+    while (i < N && cows[i].a <= end) { // ! Push every waiting cow
+      pq.push(cows[i]);
+      ++i;
     }
 
-    if (cow.a >= end) {
-      end = cow.a + cow.t;
+    if (pq.empty()) {
+      end = cows[i].a + cows[i].t;
+      ++i;
     } else {
-      pq.push(cow);
+      ans = std::max<long long>(ans, end - pq.top().a);
+      end += pq.top().t;
+      pq.pop();
     }
   }
 
   std::cout << ans << "\n";
+
   return 0;
 }
