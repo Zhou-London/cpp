@@ -21,8 +21,8 @@ silver/<topic>/[<difficulty>/]<problem>/    USACO Silver
 
 Topics are named after the technique they drill, not after the problems:
 `binary-search`, `prefix-sum`, `two-pointer`, `sorting`, `simulation`,
-`greedy`, `complete-search`. A new problem goes under the technique that
-solves it.
+`greedy`, `complete-search`, `priority-queue`. A new problem goes under the
+technique that solves it.
 
 The `<difficulty>` level is optional. Some topics group their problems into
 `easy`, `normal`, and `hard`; the rest hold the problem directories directly.
@@ -67,9 +67,13 @@ Every new solution opens with two comment lines:
 `// *` links the problem statement. `// ?` lists the techniques, comma
 separated, so the directory can be searched by technique.
 
+A third header line, `// !` followed by a bare number, gives the difficulty
+rating the judge publishes — for example `// ! 1900`. Add the line when the
+judge publishes a rating, and leave it out otherwise.
+
 Inside the body, `// !` marks a trap: an intermediate value that overflows
-`int`, an index bound that is easy to write off by one, a container that is
-already sized. Mark the trap where the code handles it. Never explain what the
+`int`, an index bound that is easy to write off by one, a pointer that starts
+uninitialized. Mark the trap where the code handles it. Never explain what the
 line does — the code says that.
 
 Follow [humandoc](https://github.com/Zhou-London/nskills) for every comment.
@@ -79,8 +83,10 @@ Write the present state, put the fact first, keep one clause per sentence.
 
 A problem whose reasoning does not fit in comments gets a `sol.md` beside
 `main.cpp`. It derives the solution: the transformation, why the counting
-covers every case exactly once, and the final formula. These are written in
-Chinese; match the language of the file being edited.
+covers every case exactly once, and the final formula. A write-up may instead
+walk one worked example through the argument and close with a question to
+answer before the next attempt. These are written in Chinese; match the
+language of the file being edited.
 
 ## Style
 
