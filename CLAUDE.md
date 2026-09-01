@@ -21,8 +21,8 @@ silver/<topic>/[<difficulty>/]<problem>/    USACO Silver
 
 Topics are named after the technique they drill, not after the problems:
 `binary-search`, `prefix-sum`, `two-pointer`, `sorting`, `simulation`,
-`greedy`, `complete-search`, `priority-queue`. A new problem goes under the
-technique that solves it.
+`greedy`, `complete-search`, `priority-queue`, `graph`. A new problem goes
+under the technique that solves it.
 
 The `<difficulty>` level is optional. Some topics group their problems into
 `easy`, `normal`, and `hard`; the rest hold the problem directories directly.

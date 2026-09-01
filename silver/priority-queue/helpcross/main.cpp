@@ -1,7 +1,7 @@
 
 
 // * https://usaco.org/index.php?page=viewproblem2&cpid=714
-// ?
+// ? Priority Queue, Sorting, Greedy
 
 #include <algorithm>
 #include <cstdio>

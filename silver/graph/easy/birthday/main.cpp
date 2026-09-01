@@ -1,7 +1,7 @@
 
 
 // * https://open.kattis.com/problems/birthday
-// ?
+// ? Graph
 
 #include <algorithm>
 #include <cstdio>
