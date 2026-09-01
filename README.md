@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 92" src="https://img.shields.io/badge/problems-92-4c1" />
+  <img alt="Problems solved: 101" src="https://img.shields.io/badge/problems-101-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -20,7 +20,7 @@ compiles on its own, runs on its own, and can be read on its own.
 
 ```
 bronze/     USACO Bronze topics: simulation, greedy, complete search, casework, sorting, maps, rectangles, graphs
-silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues
+silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues, graphs
 ```
 
 A problem lives in its own directory under a topic. Older topics group the
@@ -130,11 +130,65 @@ written in Chinese.
 | [`binary-search`](silver/binary-search) | 14 | Binary search on the answer, and on a sorted array |
 | [`prefix-sum`](silver/prefix-sum) | 11 | Range sums in O(1), 1D and 2D, plus difference arrays |
 | [`two-pointer`](silver/two-pointer) | 8 | Slide a window over a sorted array in O(n) |
-| [`sorting`](silver/sorting) | 7 | Sort or compress the coordinates first, then sweep the order |
+| [`sorting`](silver/sorting) | 8 | Sort or compress the coordinates first, then sweep the order |
 | [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
-| [`priority-queue`](silver/priority-queue) | 2 | Keep the open intervals in a heap and pop the one that ends first |
+| [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
+| [`graph`](silver/graph) | 5 | Walk the graph by BFS: components, two-coloring, reachability |
 
 ## Releases
+
+### 2026-08-31
+
+Graphs opened as a Silver topic, and priority queues grew past interval
+scheduling.
+
+- **`silver/graph` holds five solved problems**, all of them solved by breadth-first
+  search over an adjacency list. The topic groups them under `easy`.
+- **`silver/graph/easy/building-roads`** — [CSES Building Roads](https://cses.fi/problemset/task/1666).
+  Runs one BFS per unvisited city and keeps the first city of each component.
+  Joining every later component to the first one costs `components - 1` roads,
+  which is the minimum.
+- **`silver/graph/easy/building-teams`** — [CSES Building Teams](https://cses.fi/problemset/task/1668).
+  Colors the graph with two colors during BFS, giving each neighbour the other
+  color. An edge between two pupils of one color prints `IMPOSSIBLE` and stops.
+- **`silver/graph/easy/closing`** — [USACO Closing the Farm](https://usaco.org/index.php?page=viewproblem2&cpid=644).
+  Counts the components among the open barns before each closing, and answers
+  `YES` when exactly one component remains. The count is a fresh BFS sweep per
+  step, which the Silver input size allows.
+- **`silver/graph/easy/fenceplan`** — [USACO Fence Planning](https://usaco.org/index.php?page=viewproblem2&cpid=944).
+  Takes the bounding box of each component during BFS and returns the smallest
+  perimeter. The perimeter needs `long long`.
+- **`silver/graph/easy/moocast`** — [USACO Moocast](https://usaco.org/index.php?page=viewproblem2&cpid=668).
+  Runs a BFS from every cow and keeps the largest count reached. The edges are
+  directed, because one cow reaches another when its own radius covers the
+  distance, so each BFS starts from a fresh `visited` array. Distances are
+  compared squared, which keeps the arithmetic in integers.
+- **`silver/graph/easy/birthday`** — [Kattis Birthday](https://open.kattis.com/problems/birthday).
+  Reads the test cases and builds the adjacency list. The solution stops there;
+  the component test is still to write.
+- **`silver/priority-queue/helpcross`** — [USACO Help Cross](https://usaco.org/index.php?page=viewproblem2&cpid=714).
+  Sorts the chickens by time and the cows by interval start, then pushes every
+  interval that has already opened into a heap keyed on end time. Each chicken
+  takes the open interval that ends first, and intervals that already closed
+  are dropped on the way.
+- **`silver/priority-queue/packing-regulation`** — [AtCoder ABC 214 E](https://atcoder.jp/contests/abc214/tasks/abc214_e).
+  Sweeps the box indices upward and holds the balls whose range has opened in a
+  heap keyed on the last index they accept. Each index takes the ball with the
+  tightest deadline; a ball whose deadline has passed prints `No`.
+- **`silver/priority-queue/william-robot`** — [Codeforces Gym 104002 E](https://codeforces.com/gym/104002/problem/E).
+  Turns a fixed-strategy opponent into one prefix constraint: among the first
+  `k` numbers, at most `⌈k/2⌉` can be kept. A min-heap takes every number and
+  pops the smallest whenever the quota breaks. The `sol.md` derives the
+  constraint by counting, and lists `(i + 2) / 2` as the precedence trap.
+- **`silver/sorting/measurement`** — [USACO Milk Measurement](https://usaco.org/index.php?page=viewproblem2&cpid=763).
+  Sorts the log entries by day and replays them, keeping each cow's amount in a
+  hash map and every amount in a `std::multiset`. The leader is the largest
+  amount in the multiset, and the display changes when a cow enters the top,
+  leaves it, or joins a tie.
+- **`silver/graph/easy/moocast` dropped `#include <endian.h>`.** The header
+  ships with glibc only, so the build in the README failed on macOS.
+- **`helpcross` and `birthday` filled their `// ?` line.** Both had an empty
+  technique list, which leaves the directory unsearchable by technique.
 
 ### 2026-08-27
 
