@@ -1,7 +1,7 @@
 
 
 // * https://open.kattis.com/problems/birthday
-// ? Graph
+// ? Graph, DFS, Tarjan, Bridge
 
 #include <algorithm>
 #include <cstdio>

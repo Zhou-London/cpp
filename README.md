@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 101" src="https://img.shields.io/badge/problems-101-4c1" />
+  <img alt="Problems solved: 102" src="https://img.shields.io/badge/problems-102-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -133,9 +133,31 @@ written in Chinese.
 | [`sorting`](silver/sorting) | 8 | Sort or compress the coordinates first, then sweep the order |
 | [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
 | [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
-| [`graph`](silver/graph) | 5 | Walk the graph by BFS: components, two-coloring, reachability |
+| [`graph`](silver/graph) | 6 | Walk the graph by BFS, and find bridges with Tarjan |
 
 ## Releases
+
+### 2026-09-01
+
+The graph topic reached bridges.
+
+- **`silver/graph/easy/birthday`** — [Kattis Birthday](https://open.kattis.com/problems/birthday).
+  Finds the bridges with Tarjan. One DFS stamps each vertex with a visit time
+  `dfn` and a `low` value, the oldest vertex its subtree can climb back to, and
+  a tree edge `(u, v)` is a bridge when `low[v] > dfn[u]`. The answer is `Yes`
+  when the graph holds a bridge or splits into more than one component.
+- **Every edge carries an index, and the DFS skips only the edge it arrived
+  on.** The two directions of one edge get the indices `2i` and `2i + 1`, so
+  `id ^ 1` names the opposite direction. Comparing the vertex against the
+  parent instead would drop a second edge between the same two vertices, and
+  that edge is exactly what stops the first one from being a bridge.
+- **Two `// !` lines mark the traps.** `hasBridge = low[v] > dfn[u]` erases a
+  bridge found earlier in the same sweep, so the flag is set only when the test
+  passes. `dfn` doubles as the visited array, because a stamp of 0 already
+  means unvisited.
+- **`sol.md` derives the `low` value**, in Chinese: the DFS tree, why an
+  undirected graph has back edges and no cross edges, and why the bridge test
+  is strict where the articulation-point test is not.
 
 ### 2026-08-31
 
