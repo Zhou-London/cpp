@@ -7,7 +7,6 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
-#include <queue>
 #include <utility>
 #include <vector>
 
@@ -47,7 +46,7 @@ int main() {
         if (!dfn[v]) {
           self(self, v, id);
           low[u] = std::min(low[u], low[v]);
-          // ! Wrong: hasBridge = low[v] > dfn[u];
+          // ! This is wrong: hasBridge = low[v] > dfn[u];
           if (low[v] > dfn[u])
             hasBridge = true;
         } else {
@@ -58,7 +57,7 @@ int main() {
 
     int components = 0;
     for (int i = 0; i < p; ++i) {
-      if (!dfn[i]) { // ! Use dfn to replace visited
+      if (!dfn[i]) { // ! Use dfn to replace the `visited` array
         dfs(dfs, i, -1);
         ++components;
       }
