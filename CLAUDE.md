@@ -79,14 +79,15 @@ line does — the code says that.
 Follow [humandoc](https://github.com/Zhou-London/nskills) for every comment.
 Write the present state, put the fact first, keep one clause per sentence.
 
-## sol.md
+## Write-up
 
-A problem whose reasoning does not fit in comments gets a `sol.md` beside
-`main.cpp`. It derives the solution: the transformation, why the counting
-covers every case exactly once, and the final formula. A write-up may instead
-walk one worked example through the argument and close with a question to
-answer before the next attempt. These are written in Chinese; match the
-language of the file being edited.
+A problem whose reasoning does not fit in comments gets a write-up beside
+`main.cpp`. Name it `sol.md`; some problems name it `solution.md` instead.
+The write-up derives the solution: the transformation, why the counting covers
+every case exactly once, and the final formula. A write-up may instead walk one
+worked example through the argument and close with a question to answer before
+the next attempt. These are written in Chinese; match the language of the file
+being edited.
 
 ## Style
 

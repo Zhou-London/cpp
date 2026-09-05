@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 102" src="https://img.shields.io/badge/problems-102-4c1" />
+  <img alt="Problems solved: 107" src="https://img.shields.io/badge/problems-107-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -100,9 +100,10 @@ overflow that needs `long long`, a bound that is `< R` rather than `<= R`, a
 pointer that starts uninitialized. These are the notes worth rereading before
 a contest.
 
-A problem whose reasoning takes more than a comment carries a `sol.md` beside
-`main.cpp`. The write-up derives the solution: what the problem turns into,
-why the counting has no gaps and no repeats, and where the formula comes from.
+A problem whose reasoning takes more than a comment carries a write-up beside
+`main.cpp`, named `sol.md` or `solution.md`. The write-up derives the solution:
+what the problem turns into, why the counting has no gaps and no repeats, and
+where the formula comes from.
 Some write-ups instead walk one worked example through the whole argument, and
 close with a question to answer before the next attempt. These notes are
 written in Chinese.
@@ -133,9 +134,43 @@ written in Chinese.
 | [`sorting`](silver/sorting) | 8 | Sort or compress the coordinates first, then sweep the order |
 | [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
 | [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
-| [`graph`](silver/graph) | 6 | Walk the graph by BFS, and find bridges with Tarjan |
+| [`graph`](silver/graph) | 11 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
 
 ## Releases
+
+### 2026-09-02
+
+Two-coloring became the graph topic's main technique, and the topic grew to
+eleven problems.
+
+- **`silver/graph/easy/bipart`** — [Codeforces 862B](https://codeforces.com/contest/862/problem/B).
+  Two-colors the tree with BFS and counts the vertices of each color. A tree is
+  already bipartite, so the complete bipartite graph over the two colors holds
+  `cnt0 * cnt1` edges, and the answer subtracts the `n - 1` edges the tree
+  already has. Both counts are `long long`, because their product overflows
+  `int`.
+- **`silver/graph/easy/cover-it`** — [Codeforces 1176E](https://codeforces.com/problemset/problem/1176/E).
+  Stamps each vertex with its BFS depth and splits the vertices by depth
+  parity, then prints the smaller group. Every vertex outside the chosen group
+  has its BFS parent inside it, so the group covers every edge, and the smaller
+  of two groups holds at most `n / 2` vertices. The `solution.md` derives the
+  parent property from a five-vertex chain.
+- **`silver/graph/easy/rank`** — [DMOJ acsl1p4](https://dmoj.ca/problem/acsl1p4).
+  Draws one edge from the winner of each match to the loser, then runs a DFS
+  from every player and counts the players a path returns to. Each DFS starts
+  from a fresh `visited` array, which the input size allows.
+- **`silver/graph/easy/revegetate`** — [USACO The Great Revegetation](https://usaco.org/index.php?page=viewproblem2&cpid=920).
+  Reads each edge as `S` (same pasture) or `D` (different pasture) and colors
+  the graph with BFS, printing `0` when two colors collide. Each component
+  fixes its own colors up to one flip, so the answer is `2` to the power of the
+  component count. The problem asks for the answer in binary, which is `1`
+  followed by one `0` per component — the decimal value overflows `long long`
+  at 50,000 components.
+- **`silver/graph/normal/flight-routes`** — [CSES Flight Routes](https://cses.fi/problemset/task/1682).
+  Holds the sample files and the two `freopen` lines. The solution is still to
+  write.
+- **A write-up carries either name, `sol.md` or `solution.md`.** `bipart` and
+  `cover-it` use the second spelling.
 
 ### 2026-09-01
 
