@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 107" src="https://img.shields.io/badge/problems-107-4c1" />
+  <img alt="Problems solved: 118" src="https://img.shields.io/badge/problems-118-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -128,15 +128,60 @@ written in Chinese.
 
 | Topic | Problems | What it drills |
 |---|---|---|
-| [`binary-search`](silver/binary-search) | 14 | Binary search on the answer, and on a sorted array |
-| [`prefix-sum`](silver/prefix-sum) | 11 | Range sums in O(1), 1D and 2D, plus difference arrays |
+| [`binary-search`](silver/binary-search) | 15 | Binary search on the answer, and on a sorted array |
+| [`prefix-sum`](silver/prefix-sum) | 12 | Range sums in O(1), 1D and 2D, plus difference arrays |
 | [`two-pointer`](silver/two-pointer) | 8 | Slide a window over a sorted array in O(n) |
 | [`sorting`](silver/sorting) | 8 | Sort or compress the coordinates first, then sweep the order |
 | [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
 | [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
-| [`graph`](silver/graph) | 11 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
+| [`graph`](silver/graph) | 14 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
 
 ## Releases
+
+### 2026-09-06
+
+Binary search reached temperature mixing, and the graph topic picked up a
+Bellman-Ford variant.
+
+- **`silver/binary-search/easy/mixing-water`** — [Codeforces 1359C](https://codeforces.com/problemset/problem/1359/C).
+  Treats the cup count as the search variable: the average temperature after
+  pouring `2k+1` cups falls as `k` grows, so the search settles between two
+  neighboring values of `k` and compares which one lands closer to the
+  target. `solution.md` derives the average formula and the search bound, in
+  Chinese.
+- **`silver/graph/normal/moo-route`** — [USACO Moo Route II](https://usaco.org/index.php?page=viewproblem2&cpid=1304).
+  Relaxes flights breadth-first instead of round by round: a queue holds the
+  pastures whose distance just improved, and each pasture keeps its flights
+  sorted by departure time so a pointer walks only the flights that depart
+  late enough to catch after the layover. The layover is skipped on the very
+  first departure, from pasture 1.
+
+### 2026-09-04
+
+Flight Routes Check finished, the graph topic picked up two harder problems,
+and prefix sums grew past plain sums.
+
+- **`silver/graph/normal/flight-routes`** — [CSES Flight Routes Check](https://cses.fi/problemset/task/1682).
+  Runs one BFS from city 1 over the graph and a second BFS from city 1 over
+  the reverse graph. A city the first BFS never reaches breaks strong
+  connectivity forward; a city the second BFS never reaches breaks it
+  backward. The graph is strongly connected only when both sweeps cover
+  every city.
+- **`silver/graph/normal/moocast`** — [USACO Moocast](https://usaco.org/index.php?page=viewproblem2&cpid=669),
+  the Gold companion of the Silver problem already solved.
+  Binary searches the shared transmission range and checks each candidate
+  with a BFS over the cows within range. The search bound is the largest
+  squared distance between two cows, which needs `long long`. An unfinished
+  `alt.cpp` starts a Kruskal-based alternative.
+- **`silver/graph/normal/wormsort`** — [USACO Wormhole Sort](https://usaco.org/index.php?page=viewproblem2&cpid=992).
+  Binary searches the minimum wormhole weight kept in the graph and checks
+  each candidate with a BFS that only needs to connect the cows out of
+  place. The BFS stops as soon as a second component among those cows
+  appears, since one component already fails the check.
+- **`silver/prefix-sum/easy/xor-queries`** — [CSES Range XOR Queries](https://cses.fi/problemset/task/1650).
+  Builds a prefix XOR array and answers each range as the XOR of two prefix
+  values. XOR is its own inverse, so the same difference trick that works
+  for sums works here.
 
 ### 2026-09-02
 
