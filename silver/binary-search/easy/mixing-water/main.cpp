@@ -3,7 +3,6 @@
 // * https://codeforces.com/problemset/problem/1359/C
 // ? Mathematics
 
-#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -32,7 +31,7 @@ int main() {
     long long k0 = (h - t) / (2 * t - h - c);
 
     long long f0 = std::abs(Top(k0)) * Bott(k0 + 1);
-    long long f1 = std::abs(k0 + 1) * Bott(k0);
+    long long f1 = std::abs(Top(k0 + 1)) * Bott(k0);
 
     long long k = f0 <= f1 ? k0 : k0 + 1;
 
