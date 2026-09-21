@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 118" src="https://img.shields.io/badge/problems-118-4c1" />
+  <img alt="Problems solved: 129" src="https://img.shields.io/badge/problems-129-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
@@ -134,9 +134,76 @@ written in Chinese.
 | [`sorting`](silver/sorting) | 8 | Sort or compress the coordinates first, then sweep the order |
 | [`greedy`](silver/greedy) | 12 | Take the best choice at each step, after sorting |
 | [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
-| [`graph`](silver/graph) | 14 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
+| [`graph-travel`](silver/graph-travel) | 14 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
+| [`flood-fill`](silver/flood-fill) | 5 | Grow a region outward from a starting cell, one grid step at a time |
+| [`tree`](silver/tree) | 6 | Walk a tree by DFS or BFS: subtree sizes, expected value, spread simulation |
 
 ## Releases
+
+### 2026-09-16
+
+Tree grew to six problems, with a degree-counting spread simulation, an
+expected-value DFS, and a two-coloring reuse from the graph topic.
+
+- **`silver/tree/easy/cowntagion`** — [USACO Cow-tagion](https://usaco.org/index.php?page=viewproblem2&cpid=1062).
+  Counts each vertex's children from its degree, then doubles a herd size
+  until it covers every child, counting the doubling days plus one day per
+  child. The root counts every one of its edges as a child; every other
+  vertex loses one edge to its parent.
+- **`silver/tree/easy/journey`** — [Codeforces 839C](https://codeforces.com/contest/839/problem/C).
+  Runs one DFS that returns each vertex's expected remaining distance: a leaf
+  returns zero, and any other vertex returns one plus the average of its
+  children's values. `solution.md` walks a four-vertex tree through the
+  recursion, in Chinese.
+- **`silver/tree/easy/milkvisits`** — [USACO Milk Visits](https://usaco.org/index.php?page=viewproblem2&cpid=968).
+  Reuses the two-coloring BFS from the graph topic, growing each component
+  only while the gene matches. A query answers yes when its two farms fall in
+  different components, or when either farm's gene already matches the visit.
+
+### 2026-09-14
+
+Tree opened as a topic with three problems, and the flood-fill maze search
+grew waypoints.
+
+- **`silver/tree` holds three problems**, each an adjacency-list DFS or BFS
+  over an unrooted or rooted tree.
+- **`silver/tree/easy/subordinates`** — [CSES Employee Hierarchy](https://cses.fi/problemset/task/1674).
+  DFS sums each vertex's subtree size and prints it minus one, dropping the
+  vertex from its own subordinate count.
+- **`silver/tree/easy/mootube`** — [USACO Mootube](https://usaco.org/index.php?page=viewproblem2&cpid=788).
+  Answers each query with a fresh BFS from the query vertex that only crosses
+  edges at or above the relevance threshold.
+- **`silver/tree/easy/polandball-forest`** — [Codeforces 755C](https://codeforces.com/contest/755/problem/C).
+  Counts the balls that point at themselves, then pairs up the remaining
+  distinct targets two at a time.
+- **`silver/flood-fill/easy/ccski`** grew waypoints into the height map,
+  extending the cross-country ski search from the 2026-09-11 problem set.
+
+### 2026-09-11
+
+Flood-fill opened as a Silver topic with five problems, and the graph topic
+took the name of the search it runs.
+
+- **`silver/graph` became `silver/graph-travel`.** The problems moved
+  unchanged; the topic now names the traversal instead of the data structure.
+- **`silver/flood-fill` holds five problems**, all of them a BFS that grows a
+  region from its starting cell.
+- **`silver/flood-fill/easy/counting-rooms`** — [CSES Counting Rooms](https://cses.fi/problemset/task/1192).
+  Runs one BFS per unvisited floor cell and counts the sweeps.
+- **`silver/flood-fill/easy/map-sweden`** — [Kattis Map of Sweden](https://open.kattis.com/problems/sverigekartan).
+  Runs one BFS from the storm's cell over land and reports the reachable
+  count, then reruns it after turning one cell to land per query.
+- **`silver/flood-fill/easy/perimeter`** — [USACO Silver Perimeter](https://usaco.org/index.php?page=viewproblem2&cpid=895).
+  Floods each pasture once and keeps the one with the largest area, breaking
+  ties by the smaller perimeter.
+- **`silver/flood-fill/easy/solve-maze`** — [Codeforces 1365D](https://codeforces.com/contest/1365/problem/D).
+  Walls the open cells next to every bear, then floods from the exit and
+  answers Yes only when the flood reaches no sheep and no bear.
+- **`silver/flood-fill/easy/ccski`** — [USACO Cross-Country Skiing](https://usaco.org/index.php?page=viewproblem2&cpid=380).
+  Binary searches the smallest height-difference tolerance a flood fill from
+  one waypoint needs to reach every other waypoint.
+- **`silver/binary-search/easy/mixing-water`** rewrote `solution.md` to a
+  shorter derivation.
 
 ### 2026-09-06
 
