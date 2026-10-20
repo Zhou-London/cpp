@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=400&text=CPP&fontAlign=80&fontAlignY=40&color=gradient" />
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=soft&height=220&color=gradient&text=CPP&fontSize=64&fontAlign=50&fontAlignY=42" /></p>
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
