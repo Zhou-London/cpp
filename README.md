@@ -140,6 +140,13 @@ written in Chinese.
 
 ## Releases
 
+### 2026-10-28
+
+- **`silver/prefix-sum/easy/goodsubarray`** — [Codeforces 1398C](https://codeforces.com/contest/1398/problem/C).
+  `main.cpp` drops two unused includes. A new `main2.cpp` starts a second
+  version that reads from `good.in`; it is a draft and does not solve the
+  problem yet.
+
 ### 2026-09-16
 
 Tree grew to six problems, with a degree-counting spread simulation, an
