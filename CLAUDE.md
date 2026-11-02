@@ -17,11 +17,13 @@ sometimes a `sol.md`.
 ```
 bronze/<topic>/[<difficulty>/]<problem>/    USACO Bronze
 silver/<topic>/[<difficulty>/]<problem>/    USACO Silver
+gold/<topic>/[<difficulty>/]<problem>/      USACO Gold
 ```
 
 Topics are named after the technique they drill, not after the problems:
 `binary-search`, `prefix-sum`, `two-pointer`, `sorting`, `simulation`,
-`greedy`, `complete-search`, `priority-queue`, `graph`. A new problem goes
+`greedy`, `complete-search`, `priority-queue`, `graph-travel`, `tree`,
+`bitwise`, `divisibility`. A new problem goes
 under the technique that solves it.
 
 The `<difficulty>` level is optional. Some topics group their problems into

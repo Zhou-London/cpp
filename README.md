@@ -2,10 +2,11 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 129" src="https://img.shields.io/badge/problems-129-4c1" />
-  <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver-1f6feb" />
+  <img alt="Problems solved: 148" src="https://img.shields.io/badge/problems-148-4c1" />
+  <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver%20%7C%20gold-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
+  <img alt="AtCoder" src="https://img.shields.io/badge/judge-AtCoder-222222" />
   <img alt="Build: single translation unit" src="https://img.shields.io/badge/build-one%20file-lightgrey" />
 </p>
 
@@ -20,7 +21,8 @@ compiles on its own, runs on its own, and can be read on its own.
 
 ```
 bronze/     USACO Bronze topics: simulation, greedy, complete search, casework, sorting, maps, rectangles, graphs
-silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues, graphs
+silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues, graphs, trees, bitwise
+gold/       USACO Gold topics: divisibility
 ```
 
 A problem lives in its own directory under a topic. Older topics group the
@@ -114,14 +116,14 @@ written in Chinese.
 
 | Topic | Problems | What it drills |
 |---|---|---|
-| [`simulation`](bronze/simulation) | 12 | Follow the statement step by step, exactly as written |
+| [`simulation`](bronze/simulation) | 19 | Follow the statement step by step, exactly as written |
 | [`greedy`](bronze/greedy) | 7 | Prove that the locally best choice stays best |
 | [`complete-search-recursion`](bronze/complete-search-recursion) | 5 | Enumerate permutations and subsets by recursion |
 | [`complete-search`](bronze/complete-search) | 4 | Enumerate every candidate when the input is small |
 | [`rectangle`](bronze/rectangle) | 3 | Overlap, union, and area of axis-aligned rectangles |
 | [`casework`](bronze/casework) | 2 | Split the input into cases that each have one answer |
 | [`sorting`](bronze/sorting) | 2 | Sort first, then read the answer off the order |
-| [`maps`](bronze/maps) | 2 | Count and look up with `std::map` and `std::set` |
+| [`maps`](bronze/maps) | 1 | Count and look up with `std::map` and `std::set` |
 | [`graph`](bronze/graph) | 1 | Walk a small graph by flood fill |
 
 ### Silver
@@ -136,9 +138,58 @@ written in Chinese.
 | [`priority-queue`](silver/priority-queue) | 5 | Keep the open candidates in a heap and pop the best one |
 | [`graph-travel`](silver/graph-travel) | 14 | Walk the graph by BFS or DFS: components, two-coloring, cycles, bridges |
 | [`flood-fill`](silver/flood-fill) | 5 | Grow a region outward from a starting cell, one grid step at a time |
-| [`tree`](silver/tree) | 6 | Walk a tree by DFS or BFS: subtree sizes, expected value, spread simulation |
+| [`tree`](silver/tree) | 12 | Walk a tree by DFS or BFS: subtree sizes, diameter, distances, rerooting |
+| [`bitwise`](silver/bitwise) | 9 | Work bit by bit: XOR tricks, prefix XOR, and per-bit counting |
+| [`functional-graph`](silver/functional-graph) | 1 | Walk a graph where each vertex has one outgoing edge, and find its cycle |
+
+### Gold
+
+| Topic | Problems | What it drills |
+|---|---|---|
+| [`divisibility`](gold/divisibility) | 3 | Factor into primes, then count with Euler's totient and coprimality |
 
 ## Releases
+
+### 2026-11-02
+
+Gold opened with a divisibility topic of three problems. Each one factors a
+number into primes by trial division up to its square root.
+
+- **`gold/divisibility/easy/etf`** — [SPOJ ETF](https://www.spoj.com/problems/ETF/).
+  Computes Euler's totient. It starts from `n` and removes the share
+  `result / p` once for each distinct prime factor `p`.
+- **`gold/divisibility/easy/product-1-mod-N`** — [Codeforces 1514C](https://codeforces.com/problemset/problem/1514/C).
+  Keeps every number below `n` that is coprime to `n`, and multiplies them
+  modulo `n`. When the product is not 1, the product itself is one of the kept
+  numbers, so dropping it leaves a product of 1. The running product is reduced
+  modulo `n` at each step, so it never overflows.
+- **`gold/divisibility/easy/power-products`** — [Codeforces 1225D](https://codeforces.com/contest/1225/problem/D).
+  Reduces each prime exponent modulo `k` to get a normal form, and builds the
+  partner value that completes every exponent to a multiple of `k`. A hash map
+  counts the normal forms already seen, and each number adds the count of its
+  partner. A partner above 10⁵ cannot exist in the input, so the build stops
+  early instead of overflowing.
+
+### 2026-10-14 to 2026-10-16
+
+Silver grew a bitwise topic and a functional-graph topic, and tree grew a
+`normal` level.
+
+- **`silver/bitwise` holds nine problems** from Codeforces, AtCoder, and USACO,
+  among them [Data Structures Fan](https://codeforces.com/contest/1872/problem/E),
+  [Lisa and the Martians](https://codeforces.com/contest/1851/problem/F),
+  [Soulmates](https://usaco.org/index.php?page=viewproblem2&cpid=1182), and
+  [Xor Sigma Problem](https://atcoder.jp/contests/abc365/tasks/abc365_e).
+  Five of them carry a `solution.md`, in Chinese.
+- **`silver/functional-graph/coop-game`** — [Codeforces 1137D](https://codeforces.com/contest/1137/problem/D),
+  an interactive problem that finds where a path joins a cycle.
+- **`silver/tree/easy`** added [Family Tree](https://usaco.org/index.php?page=viewproblem2&cpid=833)
+  and [Grass Planting](https://usaco.org/index.php?page=viewproblem2&cpid=894).
+- **`silver/tree/normal`** opened with the CSES
+  [Tree Diameter](https://cses.fi/problemset/task/1131/),
+  [Tree Distances I](https://cses.fi/problemset/task/1132/), and
+  [Tree Distances II](https://cses.fi/problemset/task/1133), plus
+  [Minimize Diameter](https://codeforces.com/gym/104536/problem/F).
 
 ### 2026-10-28
 
