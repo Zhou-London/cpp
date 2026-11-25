@@ -2,11 +2,12 @@
 
 <p align="center">
   <img alt="C++17" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white" />
-  <img alt="Problems solved: 148" src="https://img.shields.io/badge/problems-148-4c1" />
+  <img alt="Problems solved: 153" src="https://img.shields.io/badge/problems-153-4c1" />
   <img alt="USACO" src="https://img.shields.io/badge/USACO-bronze%20%7C%20silver%20%7C%20gold-1f6feb" />
   <img alt="CSES" src="https://img.shields.io/badge/judge-CSES-6f42c1" />
   <img alt="Codeforces" src="https://img.shields.io/badge/judge-Codeforces-1F8ACB" />
   <img alt="AtCoder" src="https://img.shields.io/badge/judge-AtCoder-222222" />
+  <img alt="Library Checker" src="https://img.shields.io/badge/judge-Library%20Checker-2E7D32" />
   <img alt="Build: single translation unit" src="https://img.shields.io/badge/build-one%20file-lightgrey" />
 </p>
 
@@ -22,7 +23,7 @@ compiles on its own, runs on its own, and can be read on its own.
 ```
 bronze/     USACO Bronze topics: simulation, greedy, complete search, casework, sorting, maps, rectangles, graphs
 silver/     USACO Silver topics: binary search, prefix sums, two pointers, sorting, greedy, priority queues, graphs, trees, bitwise
-gold/       USACO Gold topics: divisibility
+gold/       USACO Gold topics: divisibility, modular arithmetic, combinatorics
 ```
 
 A problem lives in its own directory under a topic. Older topics group the
@@ -147,8 +148,33 @@ written in Chinese.
 | Topic | Problems | What it drills |
 |---|---|---|
 | [`divisibility`](gold/divisibility) | 3 | Factor into primes, then count with Euler's totient and coprimality |
+| [`modular-arithmetic`](gold/modular-arithmetic) | 3 | Fast power, Fermat's little theorem, and modular inverses |
+| [`combinatorics`](gold/combinatorics) | 2 | Count with factorials, inverse factorials, and recurrences modulo a prime |
 
 ## Releases
+
+### 2026-11-23 to 2026-11-24
+
+Gold added two topics: modular arithmetic and combinatorics. These five
+solutions are single `.cpp` files for now, without their own folder or sample
+files.
+
+- **`gold/modular-arithmetic/exponenitiation1.cpp`** — [CSES Exponentiation](https://cses.fi/problemset/task/1095).
+  Computes `a^b mod 1e9+7` with fast power: square the base and halve the
+  exponent each step.
+- **`gold/modular-arithmetic/exponenitiation2.cpp`** — [CSES Exponentiation II](https://cses.fi/problemset/task/1712).
+  Computes `a^(b^c) mod 1e9+7`. By Fermat's little theorem, the inner power
+  `b^c` can be taken modulo `1e9+6` first.
+- **`gold/modular-arithmetic/santas-bot.cpp`** — [Codeforces 1279D](https://codeforces.com/contest/1279/problem/D).
+  Counts how many kids want each item, then sums the chance of a valid pick.
+  Each division becomes a multiply by a modular inverse, found with Fermat's
+  little theorem.
+- **`gold/combinatorics/easy/binomial-coefficients.cpp`** — [CSES Binomial Coefficients](https://cses.fi/problemset/task/1079).
+  Builds factorials up to 10⁶ and their modular inverses once, then answers
+  each query as `a! / (b! (a-b)!)`.
+- **`gold/combinatorics/easy/montmort-number.cpp`** — [Library Checker Montmort Number](https://judge.yosupo.jp/problem/montmort_number_mod).
+  Counts derangements with the recurrence `D(n) = (n-1)(D(n-1) + D(n-2))`,
+  taken modulo `M`.
 
 ### 2026-11-02
 
